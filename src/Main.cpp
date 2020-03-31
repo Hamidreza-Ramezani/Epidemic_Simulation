@@ -36,8 +36,7 @@ vector<Person*> employees;
 int meetingAtSchoolProb = 4;
 int meetingAtHomeProb = 2;
 int meetingAtWorkProb = 2;
-
-int populationSize = 100000;
+int populationSize = 50000;
 int initialNumberOfInfected = 1;
 int period = 4800;
 
@@ -195,9 +194,8 @@ int main() {
 	 *
 	 *
 	 *  government and intervention
-	 *  now I should write the run method for each agent, considering the deases progression, todo
+	 *  todo
 	 */
-
 	cout << "done";
 
 	return 0;
@@ -209,6 +207,9 @@ void run_simulation() {
 	string numberOfInfectiousInfo = "";
 	string numberOfInfectedInfo = "";
 	string numberOfCriticalCareInfo = "";
+	string numberOfRecoveredInfo = "";
+	string numberOfSusceptibleInfo = "";
+
 	//the location of everybody should be specified
 	while (time_step < period) {
 		for (auto &person : agents) {
@@ -262,10 +263,12 @@ void run_simulation() {
 //		for (auto &person : agents) {
 //			peopleInfo += person->toString() + "\n";
 //		}
-
 		int numberOfInfectuios = 0;
 		double numberOfInfected = 0;
 		double numberOfCriticalCare = 0;
+		int numberOfRecovered = 0;
+		int numberOfSusceptible = 0;
+
 //		if (time_step % 24 == 0){
 //			stat += "time: " + to_string(time_step) + " number of infectious people: ";
 //			for (auto &person : agents) {
@@ -283,18 +286,27 @@ void run_simulation() {
 				numberOfInfected++;
 			} else if (person->currentState == Exposed) {
 				numberOfInfected++;
+			} else if (person->currentState == Recovered) {
+				numberOfRecovered++;
+			} else {
+				numberOfSusceptible++;
 			}
 		}
-		numberOfCriticalCare = numberOfInfected/20;
+		numberOfCriticalCare = numberOfInfected / 20;
 		numberOfInfectiousInfo += to_string(numberOfInfectuios) + "\n";
 		numberOfInfectedInfo += to_string(numberOfInfected) + "\n";
 		numberOfCriticalCareInfo += to_string(numberOfCriticalCare) + "\n";
+		numberOfRecoveredInfo += to_string(numberOfRecovered) + "\n";
+		numberOfSusceptibleInfo += to_string(numberOfSusceptible) + "\n";
+
 		time_step++;
 	}
 //	writeToFile(peopleInfo, "PeopleInfo");
 	writeToFile(numberOfInfectiousInfo, "numberOfInfectiousInfo.csv");
 	writeToFile(numberOfInfectedInfo, "numberOfInfectedInfo.csv");
-	writeToFile(numberOfCriticalCareInfo,"numberOfCriticalInfo.csv");
+	writeToFile(numberOfCriticalCareInfo, "numberOfCriticalCareInfo.csv");
+	writeToFile(numberOfRecoveredInfo,"numberOfRecoveredInfo.csv");
+	writeToFile(numberOfSusceptibleInfo,"numberOfSusceptibleInfo.csv");
 }
 
 void initialize_simulation() {
