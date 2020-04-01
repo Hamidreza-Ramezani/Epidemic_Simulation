@@ -22,6 +22,11 @@ const int hoursPerDay = 24;
 const double exposedDayCount = 5.1;
 const int infectiousDayCount = 10;
 
+//extern int minutesPerDay;
+//extern int hoursPerDay;
+//extern double exposedDayCount;
+//extern int infectiousDayCount;
+
 
 class Person {
 
