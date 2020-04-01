@@ -39,3 +39,8 @@ Iter select_randomly(Iter start, Iter end) {
 //    std::advance(begin, k);
 //    return begin;
 //}
+
+
+
+//	random_shuffle(agents.begin(), agents.end());
+

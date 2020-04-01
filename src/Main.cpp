@@ -34,10 +34,10 @@ vector<vector<Person*>> workPlaces;
 vector<Person*> students;
 vector<Person*> employees;
 
-int meetingAtSchoolProb = 4;
-int meetingAtHomeProb = 2;
-int meetingAtWorkProb = 2;
-int populationSize = 1000;
+int meetingAtSchoolProb = 40;
+int meetingAtHomeProb = 20;
+int meetingAtWorkProb = 20;
+int populationSize = 10000;
 int initialNumberOfInfected = 1;
 int period = 2000;
 
@@ -47,11 +47,10 @@ int main() {
 	writeHouseholdToFile(families, "generated/family");
 	writeSchoolsToFile(schools, "generated/school");
 	writeWorkplacesToFile(workPlaces, "generated/workplace");
+
 	run_simulation();
-//	random_shuffle(agents.begin(), agents.end());
 //	Person* r = *select_randomly(agents.begin(), agents.end());
 //	todo government and intervention
-
 	cout << "done";
 	return 0;
 }
@@ -112,17 +111,17 @@ void run_simulation() {
 		for (auto &person : agents) {
 			person->individual_disease_progression();
 		}
+		int numberOfInfectuios = 0;
+		double numberOfInfected = 0;
+		double numberOfCriticalCare = 0;
+		int numberOfRecovered = 0;
+		int numberOfSusceptible = 0;
 
 		//print
 //		peopleInfo += "time: " + to_string(time_step) + "\n";
 //		for (auto &person : agents) {
 //			peopleInfo += person->toString() + "\n";
 //		}
-		int numberOfInfectuios = 0;
-		double numberOfInfected = 0;
-		double numberOfCriticalCare = 0;
-		int numberOfRecovered = 0;
-		int numberOfSusceptible = 0;
 
 //		if (time_step % 24 == 0){
 //			stat += "time: " + to_string(time_step) + " number of infectious people: ";
@@ -133,8 +132,8 @@ void run_simulation() {
 //			}
 //			stat += to_string(a) + "\n";
 //		}
-
 //		stat += "time: " + to_string(time_step) + " number of infectious people: ";
+
 		for (auto &person : agents) {
 			if (person->currentState == Infectious) {
 				numberOfInfectuios++;
@@ -350,11 +349,5 @@ void addAllWorkConnections(vector<Person*> colleagues) {
 	}
 }
 
-int myMin(int a, int b) {
-	if (a < b) {
-		return a;
-	} else {
-		return b;
-	}
-}
+
 
