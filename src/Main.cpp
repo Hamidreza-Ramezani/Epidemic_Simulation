@@ -14,7 +14,6 @@
 #include  <random>
 #include  <iterator>
 #include <algorithm>
-#include "Random_Element.h"
 
 using namespace std;
 
@@ -37,21 +36,53 @@ vector<Person*> employees;
 int meetingAtSchoolProb = 4;
 int meetingAtHomeProb = 2;
 int meetingAtWorkProb = 2;
-int populationSize = 10000;
-int initialNumberOfInfected = 1;
-int period = 4000;
+int populationSize = 20000;
+int initialNumberOfInfected = 2;
+int period = 4800;
+
+//auto rng = std::default_random_engine {};
+//std::shuffle(std::begin(cards_), std::end(cards_), rng);
+
+template<typename Iter, typename RandomGenerator>
+Iter select_randomly(Iter start, Iter end, RandomGenerator& g) {
+	std::uniform_int_distribution<> dis(0, std::distance(start, end) - 1);
+	std::advance(start, dis(g));
+	return start;
+}
+
+template<typename Iter>
+Iter select_randomly(Iter start, Iter end) {
+	static std::random_device rd;
+	static std::mt19937 gen(rd());
+	return select_randomly(start, end, gen);
+}
+
+//template<typename Iter>
+//Iter random_element(Iter start, Iter end) {
+//    std::advance(start, rand() % (std::distance(start, end) - 1));
+//    return start;
+//}
+
+//template <typename I>
+//I random_element(I begin, I end)
+//{
+//    const unsigned long n = std::distance(begin, end);
+//    const unsigned long divisor = (RAND_MAX + 1) / n;
+//
+//    unsigned long k;
+//    do { k = std::rand() / divisor; } while (k >= n);
+//
+//    std::advance(begin, k);
+//    return begin;
+//}
 
 int main() {
 	initialize_simulation();
-	//write the connections into a file
 	writeHouseholdToFile(families, "generated/family");
 	writeSchoolsToFile(schools, "generated/school");
 	writeWorkplacesToFile(workPlaces, "generated/workplace");
 	run_simulation();
-//	random_shuffle(agents.begin(), agents.end());
-//	Person* r = *select_randomly(agents.begin(), agents.end());
-//	todo government and intervention
-
+	//todo government
 	cout << "done";
 	return 0;
 }
@@ -159,11 +190,9 @@ void run_simulation() {
 //	writeToFile(peopleInfo, "PeopleInfo");
 	writeToFile(numberOfInfectiousInfo, "generated/numberOfInfectiousInfo.csv");
 	writeToFile(numberOfInfectedInfo, "generated/numberOfInfectedInfo.csv");
-	writeToFile(numberOfCriticalCareInfo,
-			"generated/numberOfCriticalCareInfo.csv");
-	writeToFile(numberOfRecoveredInfo, "generated/numberOfRecoveredInfo.csv");
-	writeToFile(numberOfSusceptibleInfo,
-			"generated/numberOfSusceptibleInfo.csv");
+	writeToFile(numberOfCriticalCareInfo, "generated/numberOfCriticalCareInfo.csv");
+	writeToFile(numberOfRecoveredInfo,"generated/numberOfRecoveredInfo.csv");
+	writeToFile(numberOfSusceptibleInfo,"generated/numberOfSusceptibleInfo.csv");
 }
 
 void initialize_simulation() {
@@ -350,12 +379,5 @@ void addAllWorkConnections(vector<Person*> colleagues) {
 	}
 }
 
-int myMin(int a, int b) {
-	if (a < b) {
-		return a;
-	} else {
-		return b;
-	}
-}
 
 

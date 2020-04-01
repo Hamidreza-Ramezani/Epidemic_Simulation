@@ -5,9 +5,6 @@
  *      Author: guest
  */
 
-
-//#include <bits/stdc++.h>
-#include <cstring>
 #include <iostream>
 #include <cstdlib>
 #include <random>
@@ -26,9 +23,6 @@ bool yesOrNo(double probabilityOfYes) {
 void writeHouseholdToFile(vector<vector<Person*>> outputVector, char* name) {
 	ofstream myfile;
 	myfile.open(name);
-//	char generatedFilesPrefix[12] = "generated/";
-//	myfile.open(strcat(generatedFilesPrefix, name));
-
 
 	string str = "";
 	for (auto family : outputVector) {
@@ -45,8 +39,7 @@ void writeHouseholdToFile(vector<vector<Person*>> outputVector, char* name) {
 void writeSchoolsToFile(vector<vector<Person*>> outputVector, char* name) {
 	ofstream myfile;
 	myfile.open(name);
-//	char generatedFilesPrefix[12] = "generated/";
-//	myfile.open(strcat(generatedFilesPrefix, name));
+
 	string str = "";
 	for (auto group : outputVector) {
 		str += "school: \n";
@@ -63,8 +56,7 @@ void writeSchoolsToFile(vector<vector<Person*>> outputVector, char* name) {
 void writeWorkplacesToFile(vector<vector<Person*>> outputVector, char* name) {
 	ofstream myfile;
 	myfile.open(name);
-//	char generatedFilesPrefix[12] = "generated/";
-//	myfile.open(strcat(generatedFilesPrefix, name));
+
 	string str = "";
 	for (auto colleagues : outputVector) {
 		str += "workplace: \n";
@@ -80,11 +72,18 @@ void writeWorkplacesToFile(vector<vector<Person*>> outputVector, char* name) {
 void writeToFile(string data, char* name) {
 	ofstream myfile;
 	myfile.open(name);
-//	char generatedFilesPrefix[12] = "generated/";
-//	myfile.open(strcat(generatedFilesPrefix, name));
-
 	myfile << data;
 	myfile.close();
+}
+
+
+
+int myMin(int a, int b) {
+	if (a < b) {
+		return a;
+	} else {
+		return b;
+	}
 }
 
 
