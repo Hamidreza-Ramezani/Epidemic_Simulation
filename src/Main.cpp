@@ -37,9 +37,9 @@ vector<Person*> employees;
 int meetingAtSchoolProb = 4;
 int meetingAtHomeProb = 2;
 int meetingAtWorkProb = 2;
-int populationSize = 1000;
+int populationSize = 10000;
 int initialNumberOfInfected = 1;
-int period = 2000;
+int period = 4000;
 
 int main() {
 	initialize_simulation();
@@ -357,4 +357,5 @@ int myMin(int a, int b) {
 		return b;
 	}
 }
+
 
