@@ -79,9 +79,6 @@ void writeToFile(string data, char* name) {
 
 
 
-
-
-
 //bool flip_coin(){
 //	random_device rd;
 //	uniform_int_distribution<int> distribution(1, 100);
