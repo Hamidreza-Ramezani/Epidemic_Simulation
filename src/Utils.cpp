@@ -78,14 +78,6 @@ void writeToFile(string data, char* name) {
 
 
 
-int myMin(int a, int b) {
-	if (a < b) {
-		return a;
-	} else {
-		return b;
-	}
-}
-
 
 
 
