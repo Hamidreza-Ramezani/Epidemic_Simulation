@@ -36,8 +36,8 @@ vector<Person*> employees;
 int meetingAtSchoolProb = 4;
 int meetingAtHomeProb = 2;
 int meetingAtWorkProb = 2;
-int populationSize = 50000;
-int initialNumberOfInfected = 1;
+int populationSize = 20000;
+int initialNumberOfInfected = 2;
 int period = 4800;
 
 //auto rng = std::default_random_engine {};
@@ -152,52 +152,13 @@ int main() {
 //	person2.setState(Infectious);
 
 	initialize_simulation();
-	writeHouseholdToFile(families, "family");
-	writeSchoolsToFile(schools, "school");
-	writeWorkplacesToFile(workPlaces, "workplace");
-
+	writeHouseholdToFile(families, "generated/family");
+	writeSchoolsToFile(schools, "generated/school");
+	writeWorkplacesToFile(workPlaces, "generated/workplace");
 	run_simulation();
 
-//	int i = agents.begin();
-
-//	random_shuffle(agents.begin(), agents.end());
-
-//	Person* r = *select_randomly(agents.begin(), agents.end());
-
-//	auto r = random_element(agents.begin(), agents.end());
-
-//	vector<Person*> agents_copy = agents;
-//	agents.erase(agents.begin() + 1, agents.begin() + 3);
-
-//	cout << "before contact:" << endl;
-//	cout << "before contact:" << endl;
-//	cout << person1.toString() << endl;
-//	cout << person2.toString() << endl;
-//
-//	person1.meet(&person2,50);
-//
-//
-//	cout << "after contact:" << endl;
-//	cout << person1.toString() << endl;
-//	cout << person2.toString() << endl;
-
-//	person1.addToHomeConnections(&person2);
-//	person1.addToHomeConnections(&person4);
-//	person1.addToHomeConnections(&person7);
-//	person1.addToHomeConnections(&person9);
-
-	/*
-	 * the first step is initialization of connections
-	 *  vector of families
-	 *  vector of classmates
-	 *  vector of colleagues
-	 *
-	 *
-	 *  government and intervention
-	 *  todo
-	 */
+	//todo government
 	cout << "done";
-
 	return 0;
 }
 
@@ -302,11 +263,11 @@ void run_simulation() {
 		time_step++;
 	}
 //	writeToFile(peopleInfo, "PeopleInfo");
-	writeToFile(numberOfInfectiousInfo, "numberOfInfectiousInfo.csv");
-	writeToFile(numberOfInfectedInfo, "numberOfInfectedInfo.csv");
-	writeToFile(numberOfCriticalCareInfo, "numberOfCriticalCareInfo.csv");
-	writeToFile(numberOfRecoveredInfo,"numberOfRecoveredInfo.csv");
-	writeToFile(numberOfSusceptibleInfo,"numberOfSusceptibleInfo.csv");
+	writeToFile(numberOfInfectiousInfo, "generated/numberOfInfectiousInfo.csv");
+	writeToFile(numberOfInfectedInfo, "generated/numberOfInfectedInfo.csv");
+	writeToFile(numberOfCriticalCareInfo, "generated/numberOfCriticalCareInfo.csv");
+	writeToFile(numberOfRecoveredInfo,"generated/numberOfRecoveredInfo.csv");
+	writeToFile(numberOfSusceptibleInfo,"generated/numberOfSusceptibleInfo.csv");
 }
 
 void initialize_simulation() {
