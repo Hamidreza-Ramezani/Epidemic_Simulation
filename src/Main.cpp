@@ -36,7 +36,7 @@ vector<Person*> employees;
 int meetingAtSchoolProb = 4;
 int meetingAtHomeProb = 2;
 int meetingAtWorkProb = 2;
-int populationSize = 50000;
+int populationSize = 10000;
 int initialNumberOfInfected = 1;
 int period = 4800;
 
@@ -152,9 +152,9 @@ int main() {
 //	person2.setState(Infectious);
 
 	initialize_simulation();
-	writeHouseholdToFile(families, "family");
-	writeSchoolsToFile(schools, "school");
-	writeWorkplacesToFile(workPlaces, "workplace");
+	writeHouseholdToFile(families, "generated/family");
+	writeSchoolsToFile(schools, "generated/school");
+	writeWorkplacesToFile(workPlaces, "generated/workplace");
 
 	run_simulation();
 
@@ -302,11 +302,11 @@ void run_simulation() {
 		time_step++;
 	}
 //	writeToFile(peopleInfo, "PeopleInfo");
-	writeToFile(numberOfInfectiousInfo, "numberOfInfectiousInfo.csv");
-	writeToFile(numberOfInfectedInfo, "numberOfInfectedInfo.csv");
-	writeToFile(numberOfCriticalCareInfo, "numberOfCriticalCareInfo.csv");
-	writeToFile(numberOfRecoveredInfo,"numberOfRecoveredInfo.csv");
-	writeToFile(numberOfSusceptibleInfo,"numberOfSusceptibleInfo.csv");
+	writeToFile(numberOfInfectiousInfo, "generated/numberOfInfectiousInfo.csv");
+	writeToFile(numberOfInfectedInfo, "generated/numberOfInfectedInfo.csv");
+	writeToFile(numberOfCriticalCareInfo, "generated/numberOfCriticalCareInfo.csv");
+	writeToFile(numberOfRecoveredInfo,"generated/numberOfRecoveredInfo.csv");
+	writeToFile(numberOfSusceptibleInfo,"generated/numberOfSusceptibleInfo.csv");
 }
 
 void initialize_simulation() {
