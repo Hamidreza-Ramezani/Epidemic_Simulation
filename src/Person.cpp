@@ -13,18 +13,6 @@
 
 using namespace std;
 
-//extern int meetingAtSchoolProb;
-//extern int meetingAtHomeProb;
-//extern int meetingAtWorkProb;
-//extern int populationSize;
-//extern int initialNumberOfInfected;
-//extern int period;
-//extern int minutesPerDay;
-//extern int hoursPerDay;
-//extern double exposedDayCount;
-//extern int infectiousDayCount;
-
-
 //Person::Person(int _id, int _age, double _incubationTime, State _state,
 //		Location _currentLocation) {
 //	this->age = _age;
