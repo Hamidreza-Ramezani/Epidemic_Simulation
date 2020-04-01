@@ -17,20 +17,8 @@ bool yesOrNo(double probabilityOfYes);
 void writeHouseholdToFile(vector<vector<Person*>> outputVector, char* name);
 void writeWorkplacesToFile(vector<vector<Person*>> outputVector, char* name);
 void writeSchoolsToFile(vector<vector<Person*>> outputVector, char* name);
-
-
-
 void writeToFile(string data, char* name);
-
-
-
-
-
-
-
-
-
-
+int myMin(int a, int b);
 
 
 

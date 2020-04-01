@@ -77,86 +77,11 @@ Iter select_randomly(Iter start, Iter end) {
 //}
 
 int main() {
-//	Person person1(1);
-//	Person person2(2);
-//	Person person3(3);
-//	Person person4(4);
-//	Person person5(5);
-//	Person person6(6);
-//	Person person7(7);
-//	Person person8(8);
-//	Person person9(9);
-//	Person person10(10);
-//	Person person11(11);
-//	Person person12(12);
-//	Person person13(13);
-//	Person person14(14);
-//	Person person15(15);
-//	Person person16(16);
-//	Person person17(17);
-//	Person person18(18);
-//	Person person19(19);
-//	Person person20(20);
-//
-//	agents.push_back(&person1);
-//	agents.push_back(&person2);
-//	agents.push_back(&person3);
-//	agents.push_back(&person4);
-//	agents.push_back(&person5);
-//	agents.push_back(&person6);
-//	agents.push_back(&person7);
-//	agents.push_back(&person8);
-//	agents.push_back(&person9);
-//	agents.push_back(&person10);
-//	agents.push_back(&person11);
-//	agents.push_back(&person12);
-//	agents.push_back(&person13);
-//	agents.push_back(&person14);
-//	agents.push_back(&person15);
-//	agents.push_back(&person16);
-//	agents.push_back(&person17);
-//	agents.push_back(&person18);
-//	agents.push_back(&person19);
-//	agents.push_back(&person20);
-//
-//	person1.setState(Susceptible);
-//	person2.setState(Susceptible);
-//	person3.setState(Susceptible);
-//	person4.setState(Susceptible);
-//	person5.setState(Susceptible);
-//	person6.setState(Susceptible);
-//	person7.setState(Susceptible);
-//	person8.setState(Infectious);
-//	person9.setState(Susceptible);
-//	person10.setState(Susceptible);
-//	person11.setState(Susceptible);
-//	person12.setState(Susceptible);
-//	person13.setState(Infectious);
-//	person14.setState(Susceptible);
-//	person15.setState(Susceptible);
-//	person16.setState(Susceptible);
-//	person17.setState(Susceptible);
-//	person18.setState(Susceptible);
-//	person19.setState(Susceptible);
-//	person20.setState(Susceptible);
-
-//	person1.setStatus(other);
-//	person2.setStatus(student);
-//	person3.setStatus(employee);
-//	person4.setStatus(student);
-//	person5.setStatus(employee);
-//	person6.setStatus(other);
-//	person7.setStatus(employee);
-//	person8.setStatus(student);
-//	person1.setState(Susceptible);
-//	person2.setState(Infectious);
-
 	initialize_simulation();
 	writeHouseholdToFile(families, "generated/family");
 	writeSchoolsToFile(schools, "generated/school");
 	writeWorkplacesToFile(workPlaces, "generated/workplace");
 	run_simulation();
-
 	//todo government
 	cout << "done";
 	return 0;
@@ -454,11 +379,5 @@ void addAllWorkConnections(vector<Person*> colleagues) {
 	}
 }
 
-int myMin(int a, int b) {
-	if (a < b) {
-		return a;
-	} else {
-		return b;
-	}
-}
+
 
