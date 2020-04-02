@@ -36,8 +36,8 @@ vector<Person*> employees;
 int meetingAtSchoolProb = 4;
 int meetingAtHomeProb = 2;
 int meetingAtWorkProb = 2;
-int populationSize = 50000;
-int initialNumberOfInfected = 1;
+int populationSize = 10000;
+int initialNumberOfInfected = 2;
 int period = 4800;
 
 //auto rng = std::default_random_engine {};
