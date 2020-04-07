@@ -36,17 +36,17 @@ vector<vector<Person*>> workPlaces;
 vector<Person*> students;
 vector<Person*> employees;
 
-double meetingAtSchoolProb = 0.2;
-double meetingAtHomeProb = 0.1;
-double meetingAtWorkProb = 0.1;
+double meetingAtSchoolProb = 0.1;
+double meetingAtHomeProb = 0.09;
+double meetingAtWorkProb = 0.08;
 
 //int meetingAtSchoolProb = 1;
 //int meetingAtHomeProb = 1;
 //int meetingAtWorkProb = 1;
 
-int populationSize = 100000;
+int populationSize = 20000;
 int initialNumberOfInfected = 2;
-int period = 4800;
+int period = 6000;
 
 //auto rng = std::default_random_engine {};
 //std::shuffle(std::begin(cards_), std::end(cards_), rng);
