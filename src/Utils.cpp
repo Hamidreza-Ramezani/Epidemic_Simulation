@@ -17,7 +17,7 @@
 using namespace std;
 
 bool yesOrNo(double probabilityOfYes) {
-	return rand() % 100 < (probabilityOfYes);
+	return rand() % 10000 < (probabilityOfYes * 100);
 }
 
 void writeHouseholdToFile(vector<vector<Person*>> outputVector, char* name) {

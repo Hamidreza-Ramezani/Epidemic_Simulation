@@ -21,6 +21,9 @@ int myMin(int a, int b);
 void run_simulation();
 void initialize_simulation();
 int getRandomHouseholdSize();
+int getRandomSchoolSize();
+int getRandomWorkplaceSize();
+
 string getAgents();
 void addAllHomeConnections(vector<Person*> people);
 void addAllWorkConnections(vector<Person*> colleagues);
@@ -33,10 +36,15 @@ vector<vector<Person*>> workPlaces;
 vector<Person*> students;
 vector<Person*> employees;
 
-int meetingAtSchoolProb = 4;
-int meetingAtHomeProb = 2;
-int meetingAtWorkProb = 2;
-int populationSize = 10000;
+double meetingAtSchoolProb = 0.2;
+double meetingAtHomeProb = 0.1;
+double meetingAtWorkProb = 0.1;
+
+//int meetingAtSchoolProb = 1;
+//int meetingAtHomeProb = 1;
+//int meetingAtWorkProb = 1;
+
+int populationSize = 100000;
 int initialNumberOfInfected = 2;
 int period = 4800;
 
@@ -299,14 +307,14 @@ void run_simulation() {
 		numberOfRecoveredInfo += to_string(numberOfRecovered) + "\n";
 		numberOfSusceptibleInfo += to_string(numberOfSusceptible) + "\n";
 
-		time_step++;
+		time_step += 1;
 	}
 //	writeToFile(peopleInfo, "PeopleInfo");
 	writeToFile(numberOfInfectiousInfo, "numberOfInfectiousInfo.csv");
 	writeToFile(numberOfInfectedInfo, "numberOfInfectedInfo.csv");
 	writeToFile(numberOfCriticalCareInfo, "numberOfCriticalCareInfo.csv");
-	writeToFile(numberOfRecoveredInfo,"numberOfRecoveredInfo.csv");
-	writeToFile(numberOfSusceptibleInfo,"numberOfSusceptibleInfo.csv");
+	writeToFile(numberOfRecoveredInfo, "numberOfRecoveredInfo.csv");
+	writeToFile(numberOfSusceptibleInfo, "numberOfSusceptibleInfo.csv");
 }
 
 void initialize_simulation() {
@@ -379,7 +387,7 @@ void initialize_simulation() {
 	//partitioning employees
 	vector<Person*> employees_copy = employees;
 	while (!employees.empty()) {
-		int i = myMin(getRandomHouseholdSize(), employees.size());
+		int i = myMin(getRandomWorkplaceSize(), employees.size());
 		for (int j = 0; j < i; j++) {
 			Person* person = *select_randomly(employees.begin(),
 					employees.end());
@@ -398,7 +406,7 @@ void initialize_simulation() {
 	//partitioning students
 	vector<Person*> students_copy = students;
 	while (!students.empty()) {
-		int i = myMin(getRandomHouseholdSize(), students.size());
+		int i = myMin(getRandomSchoolSize(), students.size());
 		for (int j = 0; j < i; j++) {
 			Person* person = *select_randomly(students.begin(), students.end());
 			school.push_back(person);
@@ -449,6 +457,72 @@ int getRandomHouseholdSize() {
 
 	for (int i = 0; i < percentageOfSizeFive; i++) {
 		v.push_back(5);
+	}
+
+	random_shuffle(v.begin(), v.end());
+	int randomNumber = *select_randomly(v.begin(), v.end());
+	return randomNumber;
+}
+
+int getRandomSchoolSize() {
+	vector<int> v;
+	int percentageOfSizeTen = 30;
+	int percentageOfSizeTwenty = 35;
+	int percentageOfSizeThirty = 16;
+	int percentageOfSizeFourty = 14;
+	int percentageOfSizeFifty = 5;
+
+	for (int i = 0; i < percentageOfSizeTen; i++) {
+		v.push_back(10);
+	}
+
+	for (int i = 0; i < percentageOfSizeTwenty; i++) {
+		v.push_back(20);
+	}
+
+	for (int i = 0; i < percentageOfSizeThirty; i++) {
+		v.push_back(30);
+	}
+
+	for (int i = 0; i < percentageOfSizeFourty; i++) {
+		v.push_back(40);
+	}
+
+	for (int i = 0; i < percentageOfSizeFifty; i++) {
+		v.push_back(50);
+	}
+
+	random_shuffle(v.begin(), v.end());
+	int randomNumber = *select_randomly(v.begin(), v.end());
+	return randomNumber;
+}
+
+int getRandomWorkplaceSize() {
+	vector<int> v;
+	int percentageOfSizeTen = 30;
+	int percentageOfSizeTwenty = 35;
+	int percentageOfSizeThirty = 16;
+	int percentageOfSizeFourty = 14;
+	int percentageOfSizeFifty = 5;
+
+	for (int i = 0; i < percentageOfSizeTen; i++) {
+		v.push_back(10);
+	}
+
+	for (int i = 0; i < percentageOfSizeTwenty; i++) {
+		v.push_back(20);
+	}
+
+	for (int i = 0; i < percentageOfSizeThirty; i++) {
+		v.push_back(30);
+	}
+
+	for (int i = 0; i < percentageOfSizeFourty; i++) {
+		v.push_back(40);
+	}
+
+	for (int i = 0; i < percentageOfSizeFifty; i++) {
+		v.push_back(50);
 	}
 
 	random_shuffle(v.begin(), v.end());
