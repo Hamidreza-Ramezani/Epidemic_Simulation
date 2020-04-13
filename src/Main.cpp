@@ -44,9 +44,9 @@ double meetingAtWorkProb = 0.08;
 //int meetingAtHomeProb = 1;
 //int meetingAtWorkProb = 1;
 
-int populationSize = 20000;
+int populationSize = 10000;
 int initialNumberOfInfected = 2;
-int period = 6000;
+int period = 4800;
 
 //auto rng = std::default_random_engine {};
 //std::shuffle(std::begin(cards_), std::end(cards_), rng);
@@ -160,10 +160,9 @@ int main() {
 //	person2.setState(Infectious);
 
 	initialize_simulation();
-	writeHouseholdToFile(families, "family");
-	writeSchoolsToFile(schools, "school");
-	writeWorkplacesToFile(workPlaces, "workplace");
-
+	writeHouseholdToFile(families, (char*)"family");
+	writeSchoolsToFile(schools, (char*)"school");
+	writeWorkplacesToFile(workPlaces, (char*)"workplace");
 	run_simulation();
 
 //	int i = agents.begin();
@@ -310,11 +309,11 @@ void run_simulation() {
 		time_step += 1;
 	}
 //	writeToFile(peopleInfo, "PeopleInfo");
-	writeToFile(numberOfInfectiousInfo, "numberOfInfectiousInfo.csv");
-	writeToFile(numberOfInfectedInfo, "numberOfInfectedInfo.csv");
-	writeToFile(numberOfCriticalCareInfo, "numberOfCriticalCareInfo.csv");
-	writeToFile(numberOfRecoveredInfo, "numberOfRecoveredInfo.csv");
-	writeToFile(numberOfSusceptibleInfo, "numberOfSusceptibleInfo.csv");
+	writeToFile(numberOfInfectiousInfo, (char*)"numberOfInfectiousInfo.csv");
+	writeToFile(numberOfInfectedInfo, (char*)"numberOfInfectedInfo.csv");
+	writeToFile(numberOfCriticalCareInfo, (char*)"numberOfCriticalCareInfo.csv");
+	writeToFile(numberOfRecoveredInfo, (char*)"numberOfRecoveredInfo.csv");
+	writeToFile(numberOfSusceptibleInfo, (char*)"numberOfSusceptibleInfo.csv");
 }
 
 void initialize_simulation() {

@@ -20,7 +20,7 @@ using namespace std;
 const int minutesPerDay = 24 * 60;
 const int hoursPerDay = 24;
 const double exposedDayCount = 5.1;
-const int infectiousDayCount = 10;
+const int infectious_time = 10;
 
 
 class Person {
@@ -35,8 +35,8 @@ public:
 	vector<Person*> homeConnections;
 	vector<Person*> schoolConnections;
 	vector<Person*> workConnections;
-    long long exposed_minute_count = 0;
-    long long infectious_minute_count = 0;
+    long long exposed_hour_count = 0;
+    long long infectious_hour_count = 0;
 	string toString();
 	Status currentStatus;
 	void setStatus(Status s);

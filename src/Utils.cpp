@@ -13,6 +13,7 @@
 #include <fstream>
 #include <iostream>
 #include "Person.h"
+#include <cstring>
 
 using namespace std;
 
@@ -22,7 +23,22 @@ bool yesOrNo(double probabilityOfYes) {
 
 void writeHouseholdToFile(vector<vector<Person*>> outputVector, char* name) {
 	ofstream myfile;
-	myfile.open(name);
+//	char str2[16];
+//	strcpy(str2, "generated/");
+//	strcat(name, str2);
+
+    char* str1;
+    char* str2;
+    str2 = name;
+    str1 = "generated/";
+    char * str3 = (char *) malloc(1 + strlen(str1)+ strlen(str2) );
+    strcpy(str3, str1);
+    strcat(str3, str2);
+    myfile.open(str3);
+
+//	myfile.open(name);
+
+
 
 	string str = "";
 	for (auto family : outputVector) {
@@ -38,7 +54,21 @@ void writeHouseholdToFile(vector<vector<Person*>> outputVector, char* name) {
 
 void writeSchoolsToFile(vector<vector<Person*>> outputVector, char* name) {
 	ofstream myfile;
-	myfile.open(name);
+
+    char* str1;
+    char* str2;
+    str2 = name;
+    str1 = "generated/";
+    char * str3 = (char *) malloc(1 + strlen(str1)+ strlen(str2) );
+    strcpy(str3, str1);
+    strcat(str3, str2);
+    myfile.open(str3);
+
+//	char str2[16];
+//	strcpy(str2, "generated/");
+//	strcat(name, str2);
+//
+//	myfile.open(name);
 
 	string str = "";
 	for (auto group : outputVector) {
@@ -55,8 +85,20 @@ void writeSchoolsToFile(vector<vector<Person*>> outputVector, char* name) {
 
 void writeWorkplacesToFile(vector<vector<Person*>> outputVector, char* name) {
 	ofstream myfile;
-	myfile.open(name);
 
+    char* str1;
+    char* str2;
+    str2 = name;
+    str1 = "generated/";
+    char * str3 = (char *) malloc(1 + strlen(str1)+ strlen(str2) );
+    strcpy(str3, str1);
+    strcat(str3, str2);
+    myfile.open(str3);
+
+//	char str2[16];
+//	strcpy(str2, "generated/");
+//	strcat(name, str2);
+//	myfile.open(name);
 	string str = "";
 	for (auto colleagues : outputVector) {
 		str += "workplace: \n";
@@ -71,7 +113,21 @@ void writeWorkplacesToFile(vector<vector<Person*>> outputVector, char* name) {
 
 void writeToFile(string data, char* name) {
 	ofstream myfile;
-	myfile.open(name);
+    char* str1;
+    char* str2;
+    str1 = "generated/";
+    str2 = name;
+
+    char * str3 = (char *) malloc(1 + strlen(str1)+ strlen(str2) );
+    strcpy(str3, str1);
+    strcat(str3, str2);
+    myfile.open(str3);
+
+//	char str2[16];
+//	strcpy(str2, "generated/");
+//	strcat(name, str2);
+//	myfile.open(name);
+
 	myfile << data;
 	myfile.close();
 }

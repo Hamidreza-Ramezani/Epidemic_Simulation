@@ -13,16 +13,6 @@
 
 using namespace std;
 
-//Person::Person(int _id, int _age, double _incubationTime, State _state,
-//		Location _currentLocation) {
-//	this->age = _age;
-//	this->currentLocation = _currentLocation;
-//	this->currentState = _state;
-//	this->id = _id;
-//	this->incubationTime = _incubationTime;
-//
-//}
-
 Person::Person(int _id) {
 	this->id = _id;
 }
@@ -35,27 +25,16 @@ void Person::setState(State s) {
 	this->currentState = s;
 }
 
-//string Person::toString() {
-//	string idStr = to_string(this->id) + "\t" + "\t" + "\t";
-//	string ageStr = to_string(this->age) + "\t" + "\t" + "\t";
-//	string timeOfInfectionStr = to_string(this->time_of_infection) + "\t" + "\t" + "\t";
-//	string stateStr = stateToString(this->currentState) + "\t" + "\t" + "\t";
-//	string statusStr = statusToString(currentStatus) + "\t" + "\t" + "\t";
-//	string locationStr = locationToString(this->currentLocation) + "\t" + "\t" + "\t";
-//	string str = "Person id: " + idStr + " age: " + ageStr
-//			+ " time of infection: " + timeOfInfectionStr + " state: "
-//			+ stateStr + " status: " + statusStr + " Location: " + locationStr;
-//	return str;
-//}
-
 string Person::toString() {
-	string idStr = to_string(this->id) + "\t" + "\t" ;
-	string timeOfInfectionStr = to_string(this->time_of_infection) + "\t" + "\t";
+	string idStr = to_string(this->id) + "\t" + "\t";
+	string timeOfInfectionStr = to_string(this->time_of_infection) + "\t"
+			+ "\t";
 	string stateStr = stateToString(this->currentState) + "\t" + "\t";
 	string statusStr = statusToString(currentStatus) + "\t" + "\t";
 	string locationStr = locationToString(this->currentLocation) + "\t" + "\t";
-	string str = "Person id: " + idStr + " time of infection: " + timeOfInfectionStr + " state: "
-			+ stateStr + " status: " + statusStr + " Location: " + locationStr;
+	string str = "Person id: " + idStr + " time of infection: "
+			+ timeOfInfectionStr + " state: " + stateStr + " status: "
+			+ statusStr + " Location: " + locationStr;
 	return str;
 }
 
@@ -97,31 +76,46 @@ void Person::meet(Person* person, int sim_time) {
 	}
 }
 
-
 void Person::individual_disease_progression() {
-	if (this->currentState == Exposed
-			and this->exposed_minute_count
-					< (exposedDayCount * hoursPerDay)) {
-		this->exposed_minute_count++;
-	}
+    if (this->currentState == Exposed) {
+      if (this->exposed_hour_count < (incubationTime * hoursPerDay)) {
+        this->exposed_hour_count += 1;
+      }
+      else {
+        this->currentState = Infectious;
+      }
+    }
 
-	else if (this->currentState == Exposed
-			and this->exposed_minute_count
-					== (exposedDayCount * hoursPerDay)) {
-		this->currentState = Infectious;
-	}
+    else if (this->currentState == Infectious) {
+      if (this->infectious_hour_count < (infectious_time * hoursPerDay)) {
+        this->infectious_hour_count += 1;
+      }
+      else {
+        this->currentState = Recovered;
+      }
+    }
 
-	else if (this->currentState == Infectious
-			and this->infectious_minute_count
-					< (infectiousDayCount * hoursPerDay)) {
-		this->infectious_minute_count++;
-	}
-
-	else if (this->currentState == Infectious
-			and this->infectious_minute_count
-					== (infectiousDayCount * hoursPerDay)) {
-		this->currentState = Recovered;
-	}
+	//	if (this->currentState == Exposed
+//			and this->exposed_minute_count < (exposedDayCount * hoursPerDay)) {
+//		this->exposed_minute_count++;
+//	}
+//
+//	else if (this->currentState == Exposed
+//			and this->exposed_minute_count == (exposedDayCount * hoursPerDay)) {
+//		this->currentState = Infectious;
+//	}
+//
+//	else if (this->currentState == Infectious
+//			and this->infectious_minute_count
+//					< (infectiousDayCount * hoursPerDay)) {
+//		this->infectious_minute_count++;
+//	}
+//
+//	else if (this->currentState == Infectious
+//			and this->infectious_minute_count
+//					== (infectiousDayCount * hoursPerDay)) {
+//		this->currentState = Recovered;
+//	}
 }
 
 void Person::updateCurrentLocation(int sim_time) {
@@ -162,26 +156,26 @@ void Person::updateCurrentLocation(int sim_time) {
 
 }
 
-string Person::getHomeConnections(){
+string Person::getHomeConnections() {
 	string str = "home connections are: \n";
 	for (auto & person : homeConnections) {
-	    str += "id: " + to_string(person->id) + "\n";
+		str += "id: " + to_string(person->id) + "\n";
 	}
 	return str;
 }
 
-string Person::getSchoolConnections(){
+string Person::getSchoolConnections() {
 	string str = "school connections are: \n";
 	for (auto & person : schoolConnections) {
-	    str += "id: " + to_string(person->id) + "\n";
+		str += "id: " + to_string(person->id) + "\n";
 	}
 	return str;
 }
 
-string Person::getWorkConnections(){
+string Person::getWorkConnections() {
 	string str = "work connections are: \n";
 	for (auto & person : workConnections) {
-	    str += "id: " + to_string(person->id) + "\n";
+		str += "id: " + to_string(person->id) + "\n";
 	}
 	return str;
 }
@@ -197,25 +191,4 @@ void Person::addToSchoolConnections(Person* person) {
 void Person::addToWorkConnections(Person* person) {
 	this->workConnections.push_back(person);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
