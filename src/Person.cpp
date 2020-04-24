@@ -94,28 +94,6 @@ void Person::individual_disease_progression() {
         this->currentState = Recovered;
       }
     }
-
-	//	if (this->currentState == Exposed
-//			and this->exposed_minute_count < (exposedDayCount * hoursPerDay)) {
-//		this->exposed_minute_count++;
-//	}
-//
-//	else if (this->currentState == Exposed
-//			and this->exposed_minute_count == (exposedDayCount * hoursPerDay)) {
-//		this->currentState = Infectious;
-//	}
-//
-//	else if (this->currentState == Infectious
-//			and this->infectious_minute_count
-//					< (infectiousDayCount * hoursPerDay)) {
-//		this->infectious_minute_count++;
-//	}
-//
-//	else if (this->currentState == Infectious
-//			and this->infectious_minute_count
-//					== (infectiousDayCount * hoursPerDay)) {
-//		this->currentState = Recovered;
-//	}
 }
 
 void Person::updateCurrentLocation(int sim_time) {

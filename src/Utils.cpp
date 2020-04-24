@@ -9,11 +9,15 @@
 #include <cstdlib>
 #include <random>
 #include <string>
-
 #include <fstream>
 #include <iostream>
 #include "Person.h"
 #include <cstring>
+#include "Utils.h"
+#include  <iterator>
+#include "Enumerated_Types.h"
+
+
 
 using namespace std;
 
@@ -23,10 +27,6 @@ bool yesOrNo(double probabilityOfYes) {
 
 void writeHouseholdToFile(vector<vector<Person*>> outputVector, char* name) {
 	ofstream myfile;
-//	char str2[16];
-//	strcpy(str2, "generated/");
-//	strcat(name, str2);
-
     char* str1;
     char* str2;
     str2 = name;
@@ -35,11 +35,6 @@ void writeHouseholdToFile(vector<vector<Person*>> outputVector, char* name) {
     strcpy(str3, str1);
     strcat(str3, str2);
     myfile.open(str3);
-
-//	myfile.open(name);
-
-
-
 	string str = "";
 	for (auto family : outputVector) {
 		str += "family: \n";
@@ -54,7 +49,6 @@ void writeHouseholdToFile(vector<vector<Person*>> outputVector, char* name) {
 
 void writeSchoolsToFile(vector<vector<Person*>> outputVector, char* name) {
 	ofstream myfile;
-
     char* str1;
     char* str2;
     str2 = name;
@@ -63,13 +57,6 @@ void writeSchoolsToFile(vector<vector<Person*>> outputVector, char* name) {
     strcpy(str3, str1);
     strcat(str3, str2);
     myfile.open(str3);
-
-//	char str2[16];
-//	strcpy(str2, "generated/");
-//	strcat(name, str2);
-//
-//	myfile.open(name);
-
 	string str = "";
 	for (auto group : outputVector) {
 		str += "school: \n";
@@ -85,7 +72,6 @@ void writeSchoolsToFile(vector<vector<Person*>> outputVector, char* name) {
 
 void writeWorkplacesToFile(vector<vector<Person*>> outputVector, char* name) {
 	ofstream myfile;
-
     char* str1;
     char* str2;
     str2 = name;
@@ -94,11 +80,6 @@ void writeWorkplacesToFile(vector<vector<Person*>> outputVector, char* name) {
     strcpy(str3, str1);
     strcat(str3, str2);
     myfile.open(str3);
-
-//	char str2[16];
-//	strcpy(str2, "generated/");
-//	strcat(name, str2);
-//	myfile.open(name);
 	string str = "";
 	for (auto colleagues : outputVector) {
 		str += "workplace: \n";
@@ -117,17 +98,10 @@ void writeToFile(string data, char* name) {
     char* str2;
     str1 = "generated/";
     str2 = name;
-
     char * str3 = (char *) malloc(1 + strlen(str1)+ strlen(str2) );
     strcpy(str3, str1);
     strcat(str3, str2);
     myfile.open(str3);
-
-//	char str2[16];
-//	strcpy(str2, "generated/");
-//	strcat(name, str2);
-//	myfile.open(name);
-
 	myfile << data;
 	myfile.close();
 }
@@ -135,12 +109,7 @@ void writeToFile(string data, char* name) {
 
 
 
-//bool flip_coin(){
-//	random_device rd;
-//	uniform_int_distribution<int> distribution(1, 100);
-//	mt19937 engine(rd()); // Mersenne twister MT19937
-//
-//	int value=distribution(engine);
-//	if(value > threshold) ...
-//}
+
+
+
 

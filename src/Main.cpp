@@ -18,16 +18,16 @@
 using namespace std;
 
 int myMin(int a, int b);
-void run_simulation();
-void initialize_simulation();
 int getRandomHouseholdSize();
 int getRandomSchoolSize();
 int getRandomWorkplaceSize();
-
 string getAgents();
 void addAllHomeConnections(vector<Person*> people);
 void addAllWorkConnections(vector<Person*> colleagues);
 void addAllSchoolConnections(vector<Person*> groupOfStudents);
+void run_simulation();
+void initialize_simulation();
+
 
 vector<Person*> agents;
 vector<vector<Person*>> families;
@@ -36,175 +36,18 @@ vector<vector<Person*>> workPlaces;
 vector<Person*> students;
 vector<Person*> employees;
 
-double meetingAtSchoolProb = 0.1;
+double meetingAtSchoolProb = 0.05;
 double meetingAtHomeProb = 0.09;
 double meetingAtWorkProb = 0.08;
-
-//int meetingAtSchoolProb = 1;
-//int meetingAtHomeProb = 1;
-//int meetingAtWorkProb = 1;
-
 int populationSize = 10000;
 int initialNumberOfInfected = 2;
 int period = 4800;
 
-//auto rng = std::default_random_engine {};
-//std::shuffle(std::begin(cards_), std::end(cards_), rng);
 
-template<typename Iter, typename RandomGenerator>
-Iter select_randomly(Iter start, Iter end, RandomGenerator& g) {
-	std::uniform_int_distribution<> dis(0, std::distance(start, end) - 1);
-	std::advance(start, dis(g));
-	return start;
-}
-
-template<typename Iter>
-Iter select_randomly(Iter start, Iter end) {
-	static std::random_device rd;
-	static std::mt19937 gen(rd());
-	return select_randomly(start, end, gen);
-}
-
-//template<typename Iter>
-//Iter random_element(Iter start, Iter end) {
-//    std::advance(start, rand() % (std::distance(start, end) - 1));
-//    return start;
-//}
-
-//template <typename I>
-//I random_element(I begin, I end)
-//{
-//    const unsigned long n = std::distance(begin, end);
-//    const unsigned long divisor = (RAND_MAX + 1) / n;
-//
-//    unsigned long k;
-//    do { k = std::rand() / divisor; } while (k >= n);
-//
-//    std::advance(begin, k);
-//    return begin;
-//}
 
 int main() {
-//	Person person1(1);
-//	Person person2(2);
-//	Person person3(3);
-//	Person person4(4);
-//	Person person5(5);
-//	Person person6(6);
-//	Person person7(7);
-//	Person person8(8);
-//	Person person9(9);
-//	Person person10(10);
-//	Person person11(11);
-//	Person person12(12);
-//	Person person13(13);
-//	Person person14(14);
-//	Person person15(15);
-//	Person person16(16);
-//	Person person17(17);
-//	Person person18(18);
-//	Person person19(19);
-//	Person person20(20);
-//
-//	agents.push_back(&person1);
-//	agents.push_back(&person2);
-//	agents.push_back(&person3);
-//	agents.push_back(&person4);
-//	agents.push_back(&person5);
-//	agents.push_back(&person6);
-//	agents.push_back(&person7);
-//	agents.push_back(&person8);
-//	agents.push_back(&person9);
-//	agents.push_back(&person10);
-//	agents.push_back(&person11);
-//	agents.push_back(&person12);
-//	agents.push_back(&person13);
-//	agents.push_back(&person14);
-//	agents.push_back(&person15);
-//	agents.push_back(&person16);
-//	agents.push_back(&person17);
-//	agents.push_back(&person18);
-//	agents.push_back(&person19);
-//	agents.push_back(&person20);
-//
-//	person1.setState(Susceptible);
-//	person2.setState(Susceptible);
-//	person3.setState(Susceptible);
-//	person4.setState(Susceptible);
-//	person5.setState(Susceptible);
-//	person6.setState(Susceptible);
-//	person7.setState(Susceptible);
-//	person8.setState(Infectious);
-//	person9.setState(Susceptible);
-//	person10.setState(Susceptible);
-//	person11.setState(Susceptible);
-//	person12.setState(Susceptible);
-//	person13.setState(Infectious);
-//	person14.setState(Susceptible);
-//	person15.setState(Susceptible);
-//	person16.setState(Susceptible);
-//	person17.setState(Susceptible);
-//	person18.setState(Susceptible);
-//	person19.setState(Susceptible);
-//	person20.setState(Susceptible);
-
-//	person1.setStatus(other);
-//	person2.setStatus(student);
-//	person3.setStatus(employee);
-//	person4.setStatus(student);
-//	person5.setStatus(employee);
-//	person6.setStatus(other);
-//	person7.setStatus(employee);
-//	person8.setStatus(student);
-//	person1.setState(Susceptible);
-//	person2.setState(Infectious);
-
 	initialize_simulation();
-	writeHouseholdToFile(families, (char*)"family");
-	writeSchoolsToFile(schools, (char*)"school");
-	writeWorkplacesToFile(workPlaces, (char*)"workplace");
 	run_simulation();
-
-//	int i = agents.begin();
-
-//	random_shuffle(agents.begin(), agents.end());
-
-//	Person* r = *select_randomly(agents.begin(), agents.end());
-
-//	auto r = random_element(agents.begin(), agents.end());
-
-//	vector<Person*> agents_copy = agents;
-//	agents.erase(agents.begin() + 1, agents.begin() + 3);
-
-//	cout << "before contact:" << endl;
-//	cout << "before contact:" << endl;
-//	cout << person1.toString() << endl;
-//	cout << person2.toString() << endl;
-//
-//	person1.meet(&person2,50);
-//
-//
-//	cout << "after contact:" << endl;
-//	cout << person1.toString() << endl;
-//	cout << person2.toString() << endl;
-
-//	person1.addToHomeConnections(&person2);
-//	person1.addToHomeConnections(&person4);
-//	person1.addToHomeConnections(&person7);
-//	person1.addToHomeConnections(&person9);
-
-	/*
-	 * the first step is initialization of connections
-	 *  vector of families
-	 *  vector of classmates
-	 *  vector of colleagues
-	 *
-	 *
-	 *  government and intervention
-	 *  todo
-	 */
-	cout << "done";
-
 	return 0;
 }
 
@@ -419,6 +262,9 @@ void initialize_simulation() {
 	}
 
 	students = students_copy;
+	writeHouseholdToFile(families, (char*)"family");
+	writeSchoolsToFile(schools, (char*)"school");
+	writeWorkplacesToFile(workPlaces, (char*)"workplace");
 }
 
 string getAgents() {
